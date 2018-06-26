@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h4>{% block title %}bearbeiten "{{ post['title'] }}"{% endblock %}</h4>
+  <h4>{% block title %}Aufgabe <em>›{{ post['title'] }}‹</em> bearbeiten{% endblock %}</h4>
 {% endblock %}
 
 {% block content %}
@@ -25,17 +25,22 @@
   <div class="input-field col s6">  
     <i class="material-icons prefix">today</i>
     <label for="date">zu erledigen bis...</label>
-    <textarea name="date" id="date" class="materialize-textarea">{{ request.form['date'] }}</textarea>
+    <input name="date" id="date" type="text" class="datepicker" value="{{ request.form['date'] }}">
   </div>
   <div class="input-field col s6">  
     <i class="material-icons prefix">access_time</i>
     <label for="time">zu erledigen bis...</label>
-    <textarea name="time" id="time" class="materialize-textarea">{{ request.form['time'] }}</textarea>
+    <input name="time" id="time" type="text" class="timepicker" value="{{ request.form['time'] }}">
   </div>
+
+
   <button class="btn waves-effect waves-light" type="submit" value="Save">Fertig</button>
-</div>
-<hr>
+
   <form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
-    <input class="danger" type="submit" value="Delete" onclick="return confirm('Wirklich löschen?');">
+    <button class="danger btn red darken-2 waves-effect waves-light" type="submit" value="Delete" onclick="return confirm('Wirklich löschen?');">Löschen</button>
   </form>
+
+</div>
+
+
 {% endblock %}

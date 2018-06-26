@@ -3,22 +3,32 @@
 {% block title %}Zu tun{% endblock %}
 
 {% block header %}
-  <h4>zu tun</h4>
+  <h4 class="center-align">Zu tun</h4>
 {% endblock %}
 
 {% block content %}
   {% for post in posts %}
-  <div class="col s10 offset-s2">
+  <div class="col s11">
       <div class="card-panel grey lighten-5 z-depth-1">
         <div class="row valign-wrapper">
           <div class="col s12">
             <h4>{{ post['title'] }}</h4>
             <div>von {{ post['username'] }} am {{ post['created'].strftime('%Y-%m-%d') }}</div>
+            <blockquote class="black-text">
+                <h5>{{ post['body'] }}</h5>
+            </blockquote>
+            <h6 class="black-text">
+              Zu erledigen bis <strong>{{ post['date'] }}</strong> - Uhrzeit <strong>{{ post['time'] }}</strong>
+            </h6>
+          </div>
             <p class="black-text">
-                {{ post['body'] }}
+              <h5>{{ post['priority'] }}</h5>
             </p>
+          <div class="col s1">
             {% if g.user['id'] == post['author_id'] %}
-              <a class="action btn-floating btn-large waves-effect waves-light red right-align" href="{{ url_for('blog.update', id=post['id']) }}"><i class="material-icons">edit</i></a>
+              <a class="action btn-floating btn-large waves-effect waves-light teal lighten-2 right-align" href="{{ url_for('blog.update', id=post['id']) }}"><i class="material-icons">edit</i></a>
+              <br><br>
+              <button class="action btn-floating btn-large waves-effect waves-light red lighten-2 right-align" type="submit" value="Delete" onclick="return confirm('Wirklich löschen?');" href="{{ url_for('blog.delete', id=post['id']) }}" method="post"><i class="material-icons">delete</i></button>
             {% endif %}
           </div>
         </div>
