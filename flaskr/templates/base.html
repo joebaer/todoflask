@@ -1,39 +1,74 @@
-<!doctype html>
-<title>{% block title %}{% endblock %} - Flaskr</title>
 
-<link rel="stylesheet" href="{{ url_for('static', filename='materialize.min.css') }}">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!DOCTYPE html>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<html lang="en">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='materialize.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js.js') }}"></script>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>{% block title %}{% endblock %} - todoflask</title>
 
-<div class="container">
-<nav>
-  <div class="nav-wrapper">   
-  <ul id="nav-mobile" class="right hide-on-med-and-down">
-    {% if g.user %}
-      <div class="brand-logo center">{{ g.user['username'] }}</div>
-      <li><a class="action" href="{{ url_for('blog.create') }}"><i class="material-icons">add</i></a></li>
-      <li><a href="{{ url_for('auth.logout') }}"><i class="material-icons">close</i></a></li>
-    {% else %}
-      <li><a href="{{ url_for('auth.register') }}">Registrieren</a></li>
-      <li><a href="{{ url_for('auth.login') }}">Einloggen</a></li>
-    {% endif %}
-  </ul>
-</div>
-</nav>
-<section class="content">
-  <body>
-  <header>
-    {% block header %}{% endblock %}
-  </header>
-  {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
-</div>
+  <!-- CSS  -->
+  <link href="{{ url_for('static', filename='materialize.min.css') }}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      {% if g.user %}
+        <div class="brand-logo center">{{ g.user['username'] }}</div>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="{{ url_for('blog.create') }}"><i class="material-icons">add</i></a></li>
+          <li><a href="{{ url_for('auth.logout') }}"><i class="material-icons">close</i></a></li>
+        </ul>
+      {% else %}
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="{{ url_for('auth.register') }}">Registrieren</a></li>
+          <li><a href="{{ url_for('auth.login') }}">Einloggen</a></li>
+        </ul>
+      {% endif %}
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12">
+            {% for message in get_flashed_messages() %}
+              <div class="flash">{{ message }}</div>
+            {% endfor %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          {% block header %}{% endblock %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>
+    <br><br>
+  </div>
+
+  <footer>
+    <div class="footer-copyright">
+      <div class="container">
+        Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='materialize.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+
 </body>
-</section>
+
+</html>
