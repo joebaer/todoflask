@@ -1,0 +1,39 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - Flaskr</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='materialize.min.css') }}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='materialize.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js.js') }}"></script>
+
+<div class="container">
+<nav>
+  <div class="nav-wrapper">   
+  <ul id="nav-mobile" class="right hide-on-med-and-down">
+    {% if g.user %}
+      <div class="brand-logo center">{{ g.user['username'] }}</div>
+      <li><a class="action" href="{{ url_for('blog.create') }}"><i class="material-icons">add</i></a></li>
+      <li><a href="{{ url_for('auth.logout') }}"><i class="material-icons">close</i></a></li>
+    {% else %}
+      <li><a href="{{ url_for('auth.register') }}">Registrieren</a></li>
+      <li><a href="{{ url_for('auth.login') }}">Einloggen</a></li>
+    {% endif %}
+  </ul>
+</div>
+</nav>
+<section class="content">
+  <body>
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</div>
+</body>
+</section>

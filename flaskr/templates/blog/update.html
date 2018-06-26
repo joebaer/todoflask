@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h4>{% block title %}bearbeiten "{{ post['title'] }}"{% endblock %}</h4>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    <div class="container-fluid">
+    <div class="row">
+      <div class="input-field col s12">
+    <i class="material-icons prefix">title</i>
+    <label for="title">Titel</label>
+    <textarea name="title" id="title" class="materialize-textarea" value="{{ request.form['title'] }}" required></textarea>
+  </div>  
+  </div>
+    <div class="row">
+    <div class="input-field col s12">  
+    <i class="material-icons prefix">short_text</i>
+    <label for="body">Text</label>
+    <textarea name="body" id="body" class="materialize-textarea">{{ request.form['body'] }}</textarea>
+  </div>
+  </div>
+  <div class="row">
+  <div class="input-field col s6">  
+    <i class="material-icons prefix">today</i>
+    <label for="date">zu erledigen bis...</label>
+    <textarea name="date" id="date" class="materialize-textarea">{{ request.form['date'] }}</textarea>
+  </div>
+  <div class="input-field col s6">  
+    <i class="material-icons prefix">access_time</i>
+    <label for="time">zu erledigen bis...</label>
+    <textarea name="time" id="time" class="materialize-textarea">{{ request.form['time'] }}</textarea>
+  </div>
+  <button class="btn waves-effect waves-light" type="submit" value="Save">Fertig</button>
+</div>
+<hr>
+  <form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Wirklich löschen?');">
+  </form>
+{% endblock %}
