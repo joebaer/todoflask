@@ -1,47 +1,49 @@
 {% extends 'base.html' %}
 
+{% block title %}Neue Aufgabe{% endblock %}
+
 {% block header %}
-  <h4>{% block title %}Neue Aufgabe{% endblock %}</h4>
+<h4>Neue Aufgabe</h4>
 {% endblock %}
 
 {% block content %}
-  <form method="post">
-    <div class="container-fluid">
+<form method="post">
+  <div class="container-fluid">
     <div class="row">
       <div class="input-field col s12">
-    <i class="material-icons prefix">title</i>
-    <label for="title">Titel</label>
-    <textarea name="title" id="title" class="materialize-textarea" value="{{ request.form['title'] }}" required></textarea>
-  </div>  
-  </div>
+        <i class="material-icons prefix">title</i>
+        <label for="title">Titel</label>
+        <textarea name="title" id="title" class="materialize-textarea" value="{{ request.form['title'] }}" required></textarea>
+      </div>
+    </div>
     <div class="row">
-    <div class="input-field col s12">  
-    <i class="material-icons prefix">short_text</i>
-    <label for="body">Text</label>
-    <textarea name="body" id="body" class="materialize-textarea">{{ request.form['body'] }}</textarea>
-  </div>
-  </div>
-  <div class="row">
-  <div class="input-field col s6">  
-    <i class="material-icons prefix">today</i>
-    <label for="date">zu erledigen bis...</label>
-    <input name="date" id="date" type="text" class="datepicker" value="{{ request.form['date'] }}">
-  </div>
-  <div class="input-field col s6">  
-    <i class="material-icons prefix">access_time</i>
-    <label for="time">zu erledigen bis...</label>
-    <input name="time" id="time" type="text" class="timepicker" value="{{ request.form['time'] }}">
-  </div>
-</div>
-<div class="row">
-  <div class="input-field col s12">  
-  <i class="material-icons prefix">short_text</i>
-  <label for="priority">Text</label>
-  <input name="priority" id="priority" class="materialize-textarea" value="{{ request.form['priority'] }}">
-</div>
-</div>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">short_text</i>
+        <label for="body">Text</label>
+        <textarea name="body" id="body" class="materialize-textarea">{{ request.form['body'] }}</textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="material-icons prefix">today</i>
+        <label for="date">zu erledigen bis...</label>
+        <input name="date" id="date" type="text" class="datepicker" value="{{ request.form['date'] }}">
+      </div>
+      <div class="input-field col s6">
+        <i class="material-icons prefix">access_time</i>
+        <label for="time">zu erledigen bis...</label>
+        <input name="time" id="time" type="text" class="timepicker" value="{{ request.form['time'] }}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">short_text</i>
+        <label for="priority">Text</label>
+        <input name="priority" id="priority" class="materialize-textarea" value="{{ request.form['priority'] }}">
+      </div>
+    </div>
 
-<!--
+    <!--
 <div class="row">
   <div class="input-field col s12">
     <select>
@@ -55,10 +57,7 @@
     <label>Priorität</label>
   </div>
 -->
-  <button class="btn waves-effect waves-light" type="submit" value="Save">speichern</button>
+    <button class="btn waves-effect waves-light" type="submit" value="Save">speichern</button>
   </div>
-
-
-
-  </form>
+</form>
 {% endblock %}

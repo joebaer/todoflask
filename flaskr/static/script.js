@@ -1,17 +1,19 @@
-console.log('hallo welt');
-
 $(document).ready(function(){
     $('.datepicker').datepicker();
-});
-
-$(document).ready(function(){
     $('.timepicker').timepicker();
-});
-
-$(document).ready(function(){
     $('select').formSelect();
+    $('.modal').modal();
+    $('.tooltipped').tooltip();
 });
 
-$(document).ready(function(){
-    $('.modal').modal();
-});
+function postDelete(url) {
+    console.log(url);
+    $.ajax({
+        type: "POST",
+        url: url,
+        success: (data) => {
+            console.log('success'), data;
+            window.location.replace("/");
+        }
+    });
+}
